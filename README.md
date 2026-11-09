@@ -1,6 +1,6 @@
 <p align="center" style="background-color: white">
   <a href="https://bragging-detector.vercel.app/">
-    <img src="https://bragging-detector.vercel.app/static/logo.png" height="200px" alt="自慢ディテクター" />
+    <img src="https://bragging-detector.vercel.app/logo.png" height="200px" alt="自慢ディテクター" />
   </a>
 </p>
 
@@ -12,39 +12,34 @@ https://bragging-detector.vercel.app/
 
 ## Folder Structure
 
-After creating an app, it should look something like:
-
 ```
 .
 ├── README.md
-├── components
-│   ├── head.js
-│   └── nav.js
-├── next.config.js
+├── index.html
 ├── node_modules
 │   ├── [...]
 ├── package.json
-├── pages
-│   └── index.js
-├── static
-│   └── favicon.ico
-└── yarn.lock
+├── public
+│   ├── favicon.ico
+│   ├── logo.png
+│   └── warning01.mp3
+├── src
+│   ├── App.jsx
+│   ├── main.jsx
+│   ├── candidate_words.json
+│   └── components
+│       ├── Notice.jsx
+│       ├── TagField.jsx
+│       ├── TranscriptField.jsx
+│       └── UploadButton.jsx
+└── vite.config.js
 ```
 
-Routing in Next.js is based on the file system, so `./pages/index.js` maps to the `/` route and
-`./pages/about.js` would map to `/about`.
+This is a Vite + React single-page app. `index.html` is the entry point, which loads
+`src/main.jsx` to mount `src/App.jsx`. There is no routing or server-side rendering.
 
-The `./static` directory maps to `/static` in the `next` server, so you can put all your
-other static resources like images or compiled CSS in there.
-
-Out of the box, we get:
-
-- Automatic transpilation and bundling (with webpack and babel)
-- Hot code reloading
-- Server rendering and indexing of `./pages`
-- Static file serving. `./static/` is mapped to `/static/`
-
-Read more about [Next's Routing](https://github.com/zeit/next.js#routing)
+The `./public` directory is served as-is at the site root (e.g. `public/logo.png` →
+`/logo.png`).
 
 ## Available Scripts
 
@@ -52,20 +47,19 @@ In the project directory, you can run:
 
 ### `npm run dev`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Runs the app in development mode with Vite.<br>
+Open the URL printed in the terminal (defaults to [http://localhost:5173](http://localhost:5173)) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any errors in the console.
 
 ### `npm run build`
 
-Builds the app for production to the `.next` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `dist` folder.<br>
+It bundles React in production mode and optimizes the build for the best performance.
 
-### `npm run start`
+### `npm run preview`
 
-Starts the application in production mode.
-The application should be compiled with \`next build\` first.
+Serves the production build from `dist` locally, to sanity-check it before deploying.
 
-See the section in Next docs about [deployment](https://github.com/zeit/next.js/wiki/Deployment) for more information.
+See [Vite's deployment docs](https://vite.dev/guide/static-deploy.html) for more information.
