@@ -1,6 +1,6 @@
 import React from "react";
-import IconButton from "@material-ui/core/IconButton";
-import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
+import IconButton from "@mui/material/IconButton";
+import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import { bool, func, string } from "prop-types";
 
 const UploadButton = props => (

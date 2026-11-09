@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import Head from "../components/head";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import Notice from "../components/notice";
-import UploadButton from "../components/uploadButton";
-import TagField from "../components/tagField";
-import TranscriptField from "../components/transcriptField";
-import Candidates from "../static/candidate_words.json";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import Notice from "./components/Notice";
+import UploadButton from "./components/UploadButton";
+import TagField from "./components/TagField";
+import TranscriptField from "./components/TranscriptField";
+import Candidates from "./candidate_words.json";
 
 const Home = () => {
   // 音声認識インスタンス
@@ -28,7 +27,7 @@ const Home = () => {
   const [userMusicName, setUserMusicName] = useState(""); // ファイル名
 
   useEffect(() => {
-    const music = new Audio("/static/warning01.mp3"); // デフォルト音
+    const music = new Audio("/warning01.mp3"); // デフォルト音
     const isAndroid = window.navigator.userAgent.includes("Android"); // Android chrome用のフラグ
     // NOTE: Web Speech APIが使えるブラウザか判定
     // https://developer.mozilla.org/ja/docs/Web/API/Web_Speech_API
@@ -76,7 +75,6 @@ const Home = () => {
 
   return (
     <div>
-      <Head title="自慢ディテクター" />
       <Notice
         open={alertOpen}
         severity="error"
@@ -96,12 +94,12 @@ const Home = () => {
         {userMusicName}を読み込みました
       </Notice>
       <Container>
-        <Grid container alignItems="center" justify="center">
-          <Grid item>
-            <img src="/static/logo.png" height="200px" alt="自慢ディテクター" />
+        <Grid container alignItems="center" justifyContent="center">
+          <Grid size="auto">
+            <img src="/logo.png" height="200px" alt="自慢ディテクター" />
           </Grid>
         </Grid>
-        <Box fontSize={25}>
+        <Box sx={{ fontSize: 25 }}>
           <TranscriptField
             finalText={finalText}
             transcript={transcript}
@@ -109,7 +107,7 @@ const Home = () => {
           />
         </Box>
         <Grid container spacing={2}>
-          <Grid item xs={11}>
+          <Grid size={11}>
             <TagField
               disabled={detecting}
               options={Candidates}
@@ -121,7 +119,7 @@ const Home = () => {
               }}
             />
           </Grid>
-          <Grid item>
+          <Grid size="auto">
             <UploadButton
               disabled={detecting}
               fileType="audio"
@@ -138,9 +136,9 @@ const Home = () => {
             />
           </Grid>
         </Grid>
-        <Box m={2}>
-          <Grid container alignItems="center" justify="center">
-            <Grid item>
+        <Box sx={{ m: 2 }}>
+          <Grid container alignItems="center" justifyContent="center">
+            <Grid size="auto">
               <Button
                 variant="outlined"
                 disabled={detecting}
